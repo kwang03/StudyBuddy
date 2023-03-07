@@ -7,5 +7,6 @@ public class EvaluateAreaBuddyActivity extends StudyBuddyActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        findViewById(R.id.check).setBackgroundColor(getColor(R.color.teal_200));
     }
 }

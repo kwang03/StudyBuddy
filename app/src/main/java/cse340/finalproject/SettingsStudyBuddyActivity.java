@@ -7,5 +7,6 @@ public class SettingsStudyBuddyActivity extends StudyBuddyActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        findViewById(R.id.settings).setBackgroundColor(getColor(R.color.teal_200));
     }
 }

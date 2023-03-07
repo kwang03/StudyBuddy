@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Final Project</string>
     <string name="StudyBuddy">Study Buddy</string>
+    <string name="Start">Start</string>
+    <string name="Pause">Pause</string>
+    <string name="StartStudying">Let\'s Start Studying!</string>
+    <string name="GoodWork">Good Work, Keep it Up!</string>
+    <string name="Ready">Ready to keep going?</string>
+    <string name="DeserveBreak">You Deserve a Break</string>
+    <string name="RestUp">Rest Up and Get Ready!</string>
 </resources>
