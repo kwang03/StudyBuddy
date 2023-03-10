@@ -15,7 +15,8 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/navBarHeight"
         android:layout_weight="1"
-        android:src="@drawable/timer" />
+        android:src="@drawable/timer"
+        android:contentDescription="@string/timer_tab" />
 
     <View
         android:layout_width="1dp"
@@ -27,7 +28,8 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/navBarHeight"
         android:layout_weight="1"
-        android:src="@drawable/lamp" />
+        android:src="@drawable/lamp"
+        android:contentDescription="@string/evaluate_area_tab" />
 
     <View
         android:layout_width="1dp"
@@ -39,5 +41,6 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/navBarHeight"
         android:layout_weight="1"
-        app:srcCompat="@drawable/settings" />
+        app:srcCompat="@drawable/settings"
+        android:contentDescription="@string/settings_tab" />
 </LinearLayout>

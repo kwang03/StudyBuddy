@@ -1,7 +1,11 @@
 package cse340.finalproject;
 
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -11,13 +15,59 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 public class StudyBuddyActivity extends AppCompatActivity {
 
     private final int[] NAV_BAR_IDS = {R.id.timer, R.id.check, R.id.settings};
+    protected UserSettings userSettings;
+    protected ConstraintLayout mainLayout;
+    protected int screenWidth;
+    protected int screenHeight;
+    protected SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        createUserSettings();
+        mainLayout = findViewById(R.id.main_layout);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        screenWidth = displayMetrics.widthPixels;
+        screenHeight = displayMetrics.heightPixels;
 
         addNavBar();
+        createTitle();
+    }
+
+    protected void createUserSettings() {
+        Context context = getApplicationContext();
+        sp = context.getSharedPreferences(getString(R.string.sharedPreferences), MODE_PRIVATE);
+
+        long studyTime = sp.getLong(getString(R.string.studyTimeKey), Long.MIN_VALUE);
+        long breakTime = sp.getLong(getString(R.string.breakTimeKey), Long.MIN_VALUE);
+        float lightMin = sp.getFloat(getString(R.string.lightMinKey), Float.MIN_VALUE);
+        float lightMax = sp.getFloat(getString(R.string.lightMaxKey), Float.MIN_VALUE);
+        float tempMin = sp.getFloat(getString(R.string.tempMinKey), Float.MIN_VALUE);
+        float tempMax = sp.getFloat(getString(R.string.tempMaxKey), Float.MIN_VALUE);
+        float humidityMin = sp.getFloat(getString(R.string.humidityMinKey), Float.MIN_VALUE);
+        float humidityMax = sp.getFloat(getString(R.string.humidityMaxKey), Float.MIN_VALUE);
+
+        userSettings = new UserSettings(studyTime, breakTime, lightMin, lightMax, tempMin, tempMax,
+                humidityMin, humidityMax);
+    }
+
+    protected void createTitle() {
+        ConstraintLayout title = (ConstraintLayout) getLayoutInflater()
+                .inflate(R.layout.screen_title, null);
+
+        ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT
+        );
+        layoutParams.startToStart = ConstraintLayout.LayoutParams.PARENT_ID;
+        layoutParams.endToEnd = ConstraintLayout.LayoutParams.PARENT_ID;
+        layoutParams.topToTop = ConstraintLayout.LayoutParams.PARENT_ID;
+
+        layoutParams.topMargin = screenHeight / 6;
+
+        mainLayout.addView(title, layoutParams);
     }
 
     private void addNavBar() {

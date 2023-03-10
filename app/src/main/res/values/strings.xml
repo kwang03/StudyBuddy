@@ -8,4 +8,38 @@
     <string name="Ready">Ready to keep going?</string>
     <string name="DeserveBreak">You Deserve a Break</string>
     <string name="RestUp">Rest Up and Get Ready!</string>
+    <string name="Light">Light</string>
+    <string name="Temperature">Temperature</string>
+    <string name="Humidity">Humidity</string>
+    <string name="CheckSurroundings">Check Your Surroundings</string>
+    <string name="Settings">Settings</string>
+    <string name="StudyTimer">Study Timer</string>
+    <string name="SensorType">Type</string>
+    <string name="SensorMeasure">Measure</string>
+    <string name="SensorStatus">Status</string>
+    <string name="Down">GO DOWN</string>
+    <string name="Good">GOOD</string>
+    <string name="Up">GO UP</string>
+    <string name="timer_tab">Timer Tab</string>
+    <string name="evaluate_area_tab">Evaluate Area Tab</string>
+    <string name="settings_tab">Settings Tab</string>
+    <string name="sharedPreferences">AppSharedPreferences</string>
+    <string name="studyTimeKey">studyTime</string>
+    <string name="breakTimeKey">breakTime</string>
+    <string name="lightMinKey">lightMin</string>
+    <string name="lightMaxKey">lightMax</string>
+    <string name="tempMinKey">tempMin</string>
+    <string name="tempMaxKey">tempMax</string>
+    <string name="humidityMinKey">humidityMin</string>
+    <string name="humidityMaxKey">humidityMax</string>
+    <string name="controls">Controls</string>
+    <string name="adjust">Adjust</string>
+    <string name="studyTime">Study Time</string>
+    <string name="breakTime">Break Time</string>
+
+    <string-array name="menu_items">
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+    </string-array>
 </resources>

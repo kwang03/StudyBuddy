@@ -2,7 +2,6 @@ package cse340.finalproject;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,27 +11,27 @@ import cse340.finalproject.views.TimerView;
 
 public class TimerStudyBuddyActivity extends StudyBuddyActivity {
 
-    private ConstraintLayout mainLayout;
     private TimerView timerView;
     private TextView studyText;
-    private int screenWidth;
-    private int screenHeight;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        screenWidth = displayMetrics.widthPixels;
-        screenHeight = displayMetrics.heightPixels;
-
-        mainLayout  = findViewById(R.id.main_layout);
         findViewById(R.id.timer).setBackgroundColor(getColor(R.color.teal_200));
 
         addTimer();
         addStartPauseButton();
         addStudyMessage();
+    }
+
+    @Override
+    protected void createTitle() {
+        super.createTitle();
+
+        TextView text = findViewById(R.id.activity_title);
+        text.setText(R.string.StudyTimer);
     }
 
     private void addStudyMessage() {
@@ -53,7 +52,8 @@ public class TimerStudyBuddyActivity extends StudyBuddyActivity {
     }
 
     private void addTimer() {
-        timerView = new TimerView(getApplicationContext(), 120000, 60000);
+        timerView = new TimerView(getApplicationContext(), userSettings.getStudyTime(),
+                userSettings.getBreakTime());
 
         ConstraintLayout.LayoutParams layoutParams = new ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.WRAP_CONTENT,
@@ -97,7 +97,7 @@ public class TimerStudyBuddyActivity extends StudyBuddyActivity {
                 timerView.pauseTimer();
                 if (timerView.getCurrentlyStudying()) {
                     newText = getResources().getString(R.string.Ready);
-                    studyText.setTextColor(Color.GREEN);
+                    studyText.setTextColor(getResources().getColor(R.color.niceGreen));
                 } else {
                     newText = getResources().getString(R.string.DeserveBreak);
                     studyText.setTextColor(Color.RED);

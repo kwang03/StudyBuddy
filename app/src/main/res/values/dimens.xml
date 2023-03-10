@@ -11,5 +11,7 @@
     <dimen name="startButtonHeight">40dp</dimen>
     <dimen name="buttonTextSize">30sp</dimen>
     <dimen name="timerTextSize">75sp</dimen>
-
+    <dimen name="tableHeaderTextSize">18sp</dimen>
+    <dimen name="tableNormalTextSize">16sp</dimen>
+    <dimen name="tablePadding">16dp</dimen>
 </resources>

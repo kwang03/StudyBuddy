@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:isScrollContainer="true"
+        android:shrinkColumns="*"
+        android:stretchColumns="*"
+        android:showDividers="middle"
+        android:id="@+id/settingsTable">
+        <TableRow>
+            <TextView
+                android:text="@string/controls"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="@dimen/tableHeaderTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <TextView
+                android:text="@string/adjust"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="@dimen/tableHeaderTextSize"
+                android:padding="@dimen/tablePadding"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="@string/studyTime"
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <Spinner
+                android:id="@+id/study_time_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="@string/breakTime"
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <Spinner
+                android:id="@+id/break_time_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="@string/Light"
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <Spinner
+                android:id="@+id/light_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="@string/Temperature"
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <Spinner
+                android:id="@+id/temperature_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="@string/Humidity"
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <Spinner
+                android:id="@+id/humidity_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+    </TableLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:isScrollContainer="true"
+        android:shrinkColumns="*"
+        android:stretchColumns="*"
+        android:showDividers="middle"
+        android:id="@+id/sensorTable">
+        <TableRow>
+            <TextView
+                android:text="@string/SensorType"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="@dimen/tableHeaderTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <TextView
+                android:text="@string/SensorMeasure"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="@dimen/tableHeaderTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <TextView
+                android:text="@string/SensorStatus"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="@dimen/tableHeaderTextSize"
+                android:padding="@dimen/tablePadding"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="@string/Light"
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <TextView
+                android:id="@+id/lightMeasure"
+                android:text=""
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <TextView
+                android:id="@+id/lightStatus"
+                android:text=""
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="@string/Temperature"
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <TextView
+                android:id="@+id/tempMeasure"
+                android:text=""
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <TextView
+                android:id="@+id/tempStatus"
+                android:text=""
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="@string/Humidity"
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <TextView
+                android:id="@+id/humidityMeasure"
+                android:text=""
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+            <TextView
+                android:id="@+id/humidityStatus"
+                android:text=""
+                android:gravity="center"
+                android:textSize="@dimen/tableNormalTextSize"
+                android:padding="@dimen/tablePadding"/>
+        </TableRow>
+
+    </TableLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
