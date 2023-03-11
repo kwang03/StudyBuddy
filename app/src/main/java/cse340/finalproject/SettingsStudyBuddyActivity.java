@@ -61,17 +61,35 @@ public class SettingsStudyBuddyActivity extends StudyBuddyActivity{
             int spinnerId = SPINNER_IDS[i];
             Spinner spinner = findViewById(spinnerId);
 
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                    R.array.menu_items, android.R.layout.simple_spinner_item);
+            ArrayAdapter<CharSequence> adapter;
+            //  Choose the right items to display in the dropdown menu
+            if (spinnerId == R.id.study_time_spinner) {
+                adapter = ArrayAdapter.createFromResource(this,
+                        R.array.study_items, android.R.layout.simple_spinner_item);
+            } else if (spinnerId == R.id.break_time_spinner) {
+                adapter = ArrayAdapter.createFromResource(this,
+                        R.array.break_items, android.R.layout.simple_spinner_item);
+            } else if (spinnerId == R.id.light_spinner) {
+                adapter = ArrayAdapter.createFromResource(this,
+                        R.array.light_items, android.R.layout.simple_spinner_item);
+            } else if (spinnerId == R.id.temperature_spinner) {
+                adapter = ArrayAdapter.createFromResource(this,
+                        R.array.temp_items, android.R.layout.simple_spinner_item);
+            } else {
+                adapter = ArrayAdapter.createFromResource(this,
+                        R.array.humidity_items, android.R.layout.simple_spinner_item);
+            }
+
 
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
             spinner.setAdapter(adapter);
 
             //  creates an on item selected listener that can be used by dropdown menus
-            AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
+            AdapterView.OnItemSelectedListener spinnerListener =
+                    new AdapterView.OnItemSelectedListener() {
                 @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
                     switch (spinnerId){
                         case R.id.study_time_spinner:
                             long studyTime = userSettings.getStudyTime();
@@ -145,12 +163,12 @@ public class SettingsStudyBuddyActivity extends StudyBuddyActivity{
                                 humidityMax = UserSettings.LOW_HUMIDITY_MAX;
                             }
                             //  update preferred humidity values in shared preferences
-                            sp.edit().putFloat(getString(R.string.humidityMinKey), humidityMin).apply();
-                            sp.edit().putFloat(getString(R.string.humidityMaxKey), humidityMax).apply();
+                            sp.edit().putFloat(getString(R.string.humidityMinKey), humidityMin)
+                                    .apply();
+                            sp.edit().putFloat(getString(R.string.humidityMaxKey), humidityMax)
+                                    .apply();
                             break;
                     }
-
-
                 }
 
                 @Override
