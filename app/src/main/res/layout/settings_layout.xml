@@ -35,7 +35,8 @@
             <Spinner
                 android:id="@+id/study_time_spinner"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="@dimen/tablePadding"/>
         </TableRow>
 
         <TableRow>
@@ -47,7 +48,8 @@
             <Spinner
                 android:id="@+id/break_time_spinner"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="@dimen/tablePadding"/>
         </TableRow>
 
         <TableRow>
@@ -59,7 +61,8 @@
             <Spinner
                 android:id="@+id/light_spinner"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="@dimen/tablePadding"/>
         </TableRow>
 
         <TableRow>
@@ -71,7 +74,8 @@
             <Spinner
                 android:id="@+id/temperature_spinner"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="@dimen/tablePadding"/>
         </TableRow>
 
         <TableRow>
@@ -83,7 +87,8 @@
             <Spinner
                 android:id="@+id/humidity_spinner"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:padding="@dimen/tablePadding"/>
         </TableRow>
 
     </TableLayout>

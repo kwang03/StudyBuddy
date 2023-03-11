@@ -1,7 +1,11 @@
 package cse340.finalproject;
 
+/**
+ * User settings class that keeps data about a users selected preferences
+ */
 public class UserSettings {
 
+    //  default values
     static final long DEFAULT_STUDY_TIME = 1500000;
     static final long DEFAULT_BREAK_TIME = 300000;
     static final float DEFAULT_LIGHT_MIN = 400;
@@ -41,6 +45,17 @@ public class UserSettings {
     private float humidityMin;
     private float humidityMax;
 
+    /**
+     * Create a user settings instance
+     * @param studyTime
+     * @param breakTime
+     * @param lightMin
+     * @param lightMax
+     * @param tempMin
+     * @param tempMax
+     * @param humidityMin
+     * @param humidityMax
+     */
     public UserSettings(long studyTime, long breakTime, float lightMin, float lightMax,
                         float tempMin, float tempMax, float humidityMin, float humidityMax) {
         this.studyTime = studyTime == Long.MIN_VALUE ? DEFAULT_STUDY_TIME : studyTime;
@@ -53,67 +68,67 @@ public class UserSettings {
         this.humidityMax = humidityMax == Float.MIN_VALUE ? DEFAULT_HUMIDITY_MAX : humidityMax;;
     }
 
+    /**
+     * gets the preferred study time
+     * @return preferred study time
+     */
     public long getStudyTime(){
         return studyTime;
     }
 
+    /**
+     * gets the preferred break time
+     * @return preferred break time
+     */
     public long getBreakTime() {
         return breakTime;
     }
 
-    public void setStudyTime(long studyTime) {
-        this.studyTime = studyTime;
-    }
-
-    public void setBreakTime(long breakTime) {
-        this.breakTime = breakTime;
-    }
-
+    /**
+     * gets the preferred light minimum value
+     * @return light minimum value
+     */
     public float getLightMin() {
         return lightMin;
     }
 
+    /**
+     * gets the preferred light maximum value
+     * @return light maximum value
+     */
     public float getLightMax() {
         return lightMax;
     }
 
+    /**
+     * gets the preferred temperature minimum value
+     * @return temperature minimum value
+     */
     public float getTempMin() {
         return tempMin;
     }
 
+    /**
+     * gets the preferred temperature maximum value
+     * @return temperature maximum value
+     */
     public float getTempMax() {
         return tempMax;
     }
 
+    /**
+     * gets the preferred humidity minimum value
+     * @return humidity minimum value
+     */
     public float getHumidityMin() {
         return humidityMin;
     }
 
+    /**
+     * gets the preferred humidity maximum value
+     * @return humidity maximum value
+     */
     public float getHumidityMax() {
         return humidityMax;
-    }
-
-    public void setLightMin(int lightMin) {
-        this.lightMin = lightMin;
-    }
-
-    public void setLightMax(int lightMax) {
-        this.lightMax = lightMax;
-    }
-
-    public void setTempMin(int tempMin) {
-        this.tempMin = tempMin;
-    }
-
-    public void setTempMax(int tempMax) {
-        this.tempMax = tempMax;
-    }
-
-    public void setHumidityMin(float humidityMin) {
-        this.humidityMin = humidityMin;
-    }
-
-    public void setHumidityMax(float humidityMax) {
-        this.humidityMax = humidityMax;
     }
 }

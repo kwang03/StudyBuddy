@@ -1,6 +1,5 @@
 package cse340.finalproject;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,12 +8,19 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import cse340.finalproject.views.TimerView;
 
+/**
+ * Activity class that displays the timer screen of the study buddy app
+ */
 public class TimerStudyBuddyActivity extends StudyBuddyActivity {
 
     private TimerView timerView;
     private TextView studyText;
 
 
+    /**
+     * Callback when this activity is created
+     * @param savedInstanceState bundle for saved instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +32,9 @@ public class TimerStudyBuddyActivity extends StudyBuddyActivity {
         addStudyMessage();
     }
 
+    /**
+     * creates the title of the timer activity on the screen
+     */
     @Override
     protected void createTitle() {
         super.createTitle();
@@ -34,6 +43,9 @@ public class TimerStudyBuddyActivity extends StudyBuddyActivity {
         text.setText(R.string.StudyTimer);
     }
 
+    /**
+     * Creates a encouraging study message below the timer on the screen
+     */
     private void addStudyMessage() {
         ConstraintLayout studyMessage = (ConstraintLayout) getLayoutInflater()
                 .inflate(R.layout.study_message, null);
@@ -51,6 +63,9 @@ public class TimerStudyBuddyActivity extends StudyBuddyActivity {
         studyText = findViewById(R.id.studyMessage);
     }
 
+    /**
+     * Creates the timerview to put on the screen
+     */
     private void addTimer() {
         timerView = new TimerView(getApplicationContext(), userSettings.getStudyTime(),
                 userSettings.getBreakTime());
@@ -68,6 +83,9 @@ public class TimerStudyBuddyActivity extends StudyBuddyActivity {
         mainLayout.addView(timerView, layoutParams);
     }
 
+    /**
+     * Adds the starts pause button to the screen and sets the on click listener for it
+     */
     private void addStartPauseButton() {
         ConstraintLayout button = (ConstraintLayout) getLayoutInflater()
                 .inflate(R.layout.start_pause_button, null);
@@ -95,12 +113,13 @@ public class TimerStudyBuddyActivity extends StudyBuddyActivity {
                 startPauseButton.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
                 startPauseButton.setTextColor(getResources().getColor(R.color.white));
                 timerView.pauseTimer();
+                //  Check if the timer is in a studying state or not
                 if (timerView.getCurrentlyStudying()) {
                     newText = getResources().getString(R.string.Ready);
                     studyText.setTextColor(getResources().getColor(R.color.niceGreen));
                 } else {
                     newText = getResources().getString(R.string.DeserveBreak);
-                    studyText.setTextColor(Color.RED);
+                    studyText.setTextColor(getColor(R.color.raspberry));
                 }
             } else {
                 //  User clicked 'start'
@@ -108,17 +127,19 @@ public class TimerStudyBuddyActivity extends StudyBuddyActivity {
                 startPauseButton.setBackgroundColor(getResources().getColor(R.color.grey));
                 startPauseButton.setTextColor(getResources().getColor(R.color.black));
                 timerView.startTimer();
+                //  Check if the timer is in a studying state or not
                 if (timerView.getCurrentlyStudying()) {
                     newText = getResources().getString(R.string.GoodWork);
                     studyText.setTextColor(getResources().getColor(R.color.niceGreen));
                 } else {
                     newText = getResources().getString(R.string.RestUp);
-                    studyText.setTextColor(Color.RED);
+                    studyText.setTextColor(getColor(R.color.raspberry));
                 }
             }
             studyText.setText(newText);
         });
 
+        //  sets the start pause button in the timerview
         timerView.setStartPauseButton(findViewById(R.id.startPauseButton));
     }
 }

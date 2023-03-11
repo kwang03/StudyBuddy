@@ -14,9 +14,12 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 //  Heavily inspired by the SensorActivity class done in CSE 340 section
+/**
+ * Activity that displays the 'check your surroundings' screen of the app
+ */
 public class EvaluateAreaBuddyActivity extends StudyBuddyActivity {
     /**
-     * The list of sensors that we have chosen to display in this
+     * The list of sensors that are shown
      */
     private static final int[] SENSORS_USED = {
             Sensor.TYPE_LIGHT,
@@ -24,9 +27,6 @@ public class EvaluateAreaBuddyActivity extends StudyBuddyActivity {
             Sensor.TYPE_RELATIVE_HUMIDITY
     };
 
-    /**
-     * How fast we want to update the display - for the whole activity
-     */
     private static final int DELAY = SensorManager.SENSOR_DELAY_UI;
 
     /**
@@ -34,9 +34,15 @@ public class EvaluateAreaBuddyActivity extends StudyBuddyActivity {
      */
     private SensorManager mSensorManager;
 
-
+    /**
+     * Sensor event listener that handles changes in sensor data
+     */
     private SensorEventListener sensorEventListener;
 
+    /**
+     * Callback for when this activity is created
+     * @param savedInstanceState bundle for saved instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +54,7 @@ public class EvaluateAreaBuddyActivity extends StudyBuddyActivity {
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorManager.getSensorList(Sensor.TYPE_ALL);
 
+        //  sets the sensor event listener for all the sensors
         sensorEventListener = createSensorEventListener();
         for (int sensorIndex : SENSORS_USED) {
             Sensor sensor = mSensorManager.getDefaultSensor(sensorIndex);
@@ -55,16 +62,23 @@ public class EvaluateAreaBuddyActivity extends StudyBuddyActivity {
         }
     }
 
+    /**
+     * callback for when the activity is paused
+     */
     @Override
     protected void onPause() {
         super.onPause();
 
+        //  unregister listeners
         for (int sensorIndex : SENSORS_USED) {
             Sensor sensor = mSensorManager.getDefaultSensor(sensorIndex);
             mSensorManager.unregisterListener(sensorEventListener, sensor);
         }
     }
 
+    /**
+     * Creates the title for this activity
+     */
     @Override
     protected void createTitle() {
         super.createTitle();
@@ -73,6 +87,9 @@ public class EvaluateAreaBuddyActivity extends StudyBuddyActivity {
         text.setText(R.string.CheckSurroundings);
     }
 
+    /**
+     * Creates the table layout that shows the sensors and their measured values
+     */
     private void createTable() {
         ConstraintLayout table = (ConstraintLayout) getLayoutInflater()
                 .inflate(R.layout.sensor_layout, null);
@@ -93,6 +110,7 @@ public class EvaluateAreaBuddyActivity extends StudyBuddyActivity {
     /**
      * Help method to update the table row (at the given index) with the string value. Assumes
      * there *is* a table row at that index, and the value is something that will fit ont he screen.
+     * (taken from section code)
      *
      * @param index The index of the table row up update. Must be > 0
      * @param value The value to update the text with.
@@ -107,6 +125,10 @@ public class EvaluateAreaBuddyActivity extends StudyBuddyActivity {
         }
     }
 
+    /**
+     * Creates the event listener used by all the sensors
+     * @return A sensor event listener that handles changes in all the used sensors
+     */
     private SensorEventListener createSensorEventListener() {
         return new SensorEventListener() {
             @Override
@@ -120,14 +142,20 @@ public class EvaluateAreaBuddyActivity extends StudyBuddyActivity {
                         float light = event.values[0];
                         status = findViewById(R.id.lightStatus);
                         if (light < userSettings.getLightMin()) {
-                            color = Color.BLUE;
+                            color = getColor(R.color.colorPrimaryDark);
                             status.setText(getText(R.string.Up));
+                            status.setContentDescription(getString(R.string.increase) +
+                                    " " + getString(R.string.Light));
                         } else if (light > userSettings.getLightMax()) {
-                            color = Color.RED;
+                            color = getColor(R.color.raspberry);
                             status.setText(getText(R.string.Down));
+                            status.setContentDescription(getString(R.string.decrease) +
+                                    " " + getString(R.string.Light));
                         } else {
-                            color = Color.GREEN;
+                            color = getColor(R.color.niceGreen);
                             status.setText(getText(R.string.Good));
+                            status.setContentDescription(getString(R.string.good) +
+                                    " " + getString(R.string.Light));
                         }
                         status.setTextColor(color);
                         toDisplay = light + " lx";
@@ -137,16 +165,22 @@ public class EvaluateAreaBuddyActivity extends StudyBuddyActivity {
                         float temp = event.values[0];
                         status = findViewById(R.id.tempStatus);
                         if (temp < userSettings.getTempMin()) {
-                            color = Color.BLUE;
+                            color = getColor(R.color.colorPrimaryDark);
                             status.setText(getText(R.string.Up));
+                            status.setContentDescription(getString(R.string.increase) +
+                                    " " + getString(R.string.Temperature));
                         }
                         else if (temp > userSettings.getTempMax()) {
-                            color = Color.RED;
+                            color = getColor(R.color.raspberry);
                             status.setText(getText(R.string.Down));
+                            status.setContentDescription(getString(R.string.decrease) +
+                                    " " + getString(R.string.Temperature));
                         }
                         else {
-                            color = Color.GREEN;
+                            color = getColor(R.color.niceGreen);
                             status.setText(getText(R.string.Good));
+                            status.setContentDescription(getString(R.string.good) +
+                                    " " + getString(R.string.Temperature));
                         }
                         status.setTextColor(color);
                         toDisplay = temp + " C";
@@ -156,16 +190,22 @@ public class EvaluateAreaBuddyActivity extends StudyBuddyActivity {
                         float humidity = event.values[0];
                         status = findViewById(R.id.humidityStatus);
                         if (humidity < userSettings.getHumidityMin()) {
-                            color = Color.BLUE;
+                            color = getColor(R.color.colorPrimaryDark);
                             status.setText(getText(R.string.Up));
+                            status.setContentDescription(getString(R.string.increase) +
+                                    " " + getString(R.string.Humidity));
                         }
                         else if (humidity > userSettings.getHumidityMax()) {
-                            color = Color.RED;
+                            color = getColor(R.color.raspberry);
                             status.setText(getText(R.string.Down));
+                            status.setContentDescription(getString(R.string.decrease) +
+                                    " " + getString(R.string.Humidity));
                         }
                         else {
-                            color = Color.GREEN;
+                            color = getColor(R.color.niceGreen);
                             status.setText(getText(R.string.Good));
+                            status.setContentDescription(getString(R.string.good) +
+                                    " " + getString(R.string.Humidity));
                         }
                         status.setTextColor(color);
                         toDisplay = humidity + " %";

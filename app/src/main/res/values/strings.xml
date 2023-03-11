@@ -36,6 +36,9 @@
     <string name="adjust">Adjust</string>
     <string name="studyTime">Study Time</string>
     <string name="breakTime">Break Time</string>
+    <string name="increase">Increase</string>
+    <string name="decrease">Decrease</string>
+    <string name="good">Good</string>
 
     <string-array name="menu_items">
         <item>High</item>

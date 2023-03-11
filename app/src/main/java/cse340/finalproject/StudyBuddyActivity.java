@@ -12,6 +12,10 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+/**
+ * This class defines the parent class for all of the main screen activities. Sets up the user
+ * settings as well as anything seen on all screens
+ */
 public class StudyBuddyActivity extends AppCompatActivity {
 
     private final int[] NAV_BAR_IDS = {R.id.timer, R.id.check, R.id.settings};
@@ -21,6 +25,10 @@ public class StudyBuddyActivity extends AppCompatActivity {
     protected int screenHeight;
     protected SharedPreferences sp;
 
+    /**
+     * callback for when this activity is created
+     * @param savedInstanceState bundle for saved instance
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +44,9 @@ public class StudyBuddyActivity extends AppCompatActivity {
         createTitle();
     }
 
+    /**
+     * Creates the user setting based on shared preferences, or just defaults values
+     */
     protected void createUserSettings() {
         Context context = getApplicationContext();
         sp = context.getSharedPreferences(getString(R.string.sharedPreferences), MODE_PRIVATE);
@@ -53,6 +64,9 @@ public class StudyBuddyActivity extends AppCompatActivity {
                 humidityMin, humidityMax);
     }
 
+    /**
+     * Creates the title of the screen that is currently being viewed
+     */
     protected void createTitle() {
         ConstraintLayout title = (ConstraintLayout) getLayoutInflater()
                 .inflate(R.layout.screen_title, null);
@@ -70,6 +84,9 @@ public class StudyBuddyActivity extends AppCompatActivity {
         mainLayout.addView(title, layoutParams);
     }
 
+    /**
+     * Adds the bottom navigation bar that allows users to go from screen to screen
+     */
     private void addNavBar() {
         ConstraintLayout mainLayout = findViewById(R.id.main_layout);
 
@@ -86,6 +103,10 @@ public class StudyBuddyActivity extends AppCompatActivity {
         setNarBarOnClickListeners();
     }
 
+    /**
+     * Sets the onclicklisteners for the navigation buttons to allow for users to move from page
+     * to page. Uses intents to do so
+     */
     private void setNarBarOnClickListeners() {
         for (int id : NAV_BAR_IDS) {
             ImageView navBarItem = findViewById(id);
